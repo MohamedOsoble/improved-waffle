@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Today's tasks and activities
+{% endblock %}
+
+{% block main %}
+
+  <div class="row g-5">
+    <div class="col-md-6">
+      <h2>Todays Diary</h2>
+      <p>Please see todays events and trackables below and complete them before the end of the day!</p>
+      <form name="diary" method="post" action="/diary">
+
+        <table class="table table-striped">
+            <tr> 
+                <th scope="col">
+                    Event
+                </th>
+                <th scope="col">
+                    Comment
+                </th>
+                <th scope="col">
+                    Complete
+                </th>
+            </tr>
+            {% for task in tasks %}
+            {% if task.taskname in logs %}
+            <tr> 
+                <td>
+                    {{ task.taskname }}
+                </td>
+                <td>
+                    {{ logs[task.taskname] }}
+                </td>
+                <td>
+                    {{ today }}
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <form name="diary" method="post" action="/diary">
+                <td>
+                    <a name="taskName"> {{ task.taskname }} </a>
+                </td>
+                <td>
+                    
+                    <input class="form-control" type="text" name= "{{ task.taskname }}" id="{{ task.taskId }}"> 
+                </td>
+                <td>
+                    <input type="submit" value="complete">
+                </td>
+                </form>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="col-md-6">
+      <h2>Dates</h2>
+      <p>Missed filling in another day? Select a date below and we'll pull up the schedule for that day!</p>
+      <ul class="icon-list">
+        <form name="selectDate" method="POST" action="/editdiary">
+            <input type="date" name="date" max={{ today }}>
+            <input type="submit" value="Find" formaction="/editdiary">
+        </form>
+      </ul>
+      <h2>Todays Activities</h2>
+      <p> Please see below if you have any activities scheduled for today! </p>
+      <table class="table table-striped">
+        <tr> 
+            <th scope="col">
+                Activity
+            </th>
+            <th scope="col">
+                Date
+            </th>
+        </tr>
+        {% for activity in activities %}
+        <tr> 
+            <td>
+                {{ activity.activity_name }}
+            </td>
+            <td>
+                {{ activity.date }}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+  </div>
+
+
+{% endblock %}

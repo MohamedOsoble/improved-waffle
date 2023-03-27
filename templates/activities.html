@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Schedule an Activity
+{% endblock %}
+
+{% block main %}
+
+  <div class="row g-5">
+    <div class="col-md-6">
+      <h2>List of scheduled activities</h2>
+      <p>Please see below for a list of future activities you've scheduled</p>
+
+        <table class="table table-striped">
+            <tr> 
+                <th scope="col">
+                    Activity
+                </th>
+                <th scope="col">
+                    Date
+                </th>
+            </tr>
+            {% for activity in activities %}
+            <tr> 
+                <td>
+                    {{ activity.activity_name }}
+                </td>
+                <td>
+                    {{ activity.date }}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="col-md-6">
+        <main class="form-signin" id="submit-form">
+            <form action="/activities" method="POST">
+              <h1 class="h3 mb-3 fw-normal">Schedule an activity for a future date!</h1>
+              <div class="form-floating">
+                <input class="form-control" id="floatingInput" name="task" placeholder="Task">
+              </div>
+              <div>
+                  <input type="date" name="date">
+              </div>
+              <button id="login-button" class="w-100 btn btn-lg btn-primary" type="submit">Add!</button>
+          </form>
+          </main>
+        
+        
+        
+{% endblock %}
+

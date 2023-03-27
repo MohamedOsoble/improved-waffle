@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Today's tasks and activities
+{% endblock %}
+
+{% block main %}
+
+  <div class="row g-5">
+    <div class="col-md-6">
+      <h2>Edit Previous Dates</h2>
+      <p>Please see the previous events on the date selected events and trackables below and complete them! </p>
+      <p> Events for: {{ selectedDate }} </p>
+      <form name="diary" method="post" action="/editdiary">
+
+        <table class="table table-striped">
+            <tr> 
+                <th scope="col">
+                    Event
+                </th>
+                <th scope="col">
+                    Comment
+                </th>
+                <th scope="col">
+                    Complete
+                </th>
+            </tr>
+            {% for task in tasks %}
+            {% if task.taskname in logs %}
+            <tr> 
+                <td>
+                    {{ task.taskname }}
+                </td>
+                <td>
+                    {{ logs[task.taskname] }}
+                </td>
+                <td>
+                    Yes
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <form name="diary" method="post" action="/updatediary">
+                <td>
+                    <a name="taskName"> {{ task.taskname }} </a>
+                </td>
+                <td>
+                    
+                    <input class="form-control" type="text" name= "{{ task.taskname }}" id="{{ task.taskId }}"> 
+                    <input type="hidden" name="selectedDate" value={{ selectedDate }} max={{ today }}>
+                </td>
+                <td>
+                    <input type="submit" value="complete" formaction="/updatediary">
+                </td>
+                </form>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="col-md-6">
+      <h2>Dates</h2>
+      <p>Missed filling in another day? Select a date below and we'll pull up the schedule for that day!</p>
+      <ul class="icon-list">
+        <form name="selectDate" method="post" action="/editdiary">
+            <input type="date" name="date">
+            <input type="submit" value="Find" formaction="/editdiary">
+        </form>
+      </ul>
+    </div>
+  </div>
+
+
+{% endblock %}

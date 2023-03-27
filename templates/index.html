@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+{% block title %}
+    Welcome to your personal tracker!
+{% endblock %}
+
+{% block main %}
+
+{% if session.user_id %}
+<main>
+  <h1>Hello, Welcome to my Final Project for CS50</h1>
+  <p>See todays diary by clicking:</p>
+  <p1></p1>
+  <div class="mb-5">
+    <a href="/diary" class="btn btn-primary btn-lg px-4">Today's Diary</a>
+  </div>
+
+  <hr class="col-3 col-md-2 mb-5">
+
+  <div class="row g-5">
+    <div class="col-md-6">
+      <h2>Daily Tasks</h2>
+      <p> Daily tasks is a log that tracks tasks or events that occur every day. For most people, these include the time they wake up, the time they go sleep, what meals they had, how much water they've consumed, if they've had their daily doses of supplements etc.</p>
+        <p1>These daily activities are highly individual and no two individuals daily events or events they wish to track are the same therefore it is up to each individual to select what events they wish to track. You can do this by clicking <a href="/diary">here</a> or by clicking
+        Add Daily Tasks from the navigation bar on top of each page.
+      </p1>
+    </div>
+
+    <div class="col-md-6">
+      <h2>Activities</h2>
+      <p>Activities are events that do not occur everyday but you need to be mindful of and remember to complete them on the day. These can be things like birthdays, interviews, assignments that all need to be remembered and marked as completed on the day</p>
+      <p1>These activities are also individual and you can see a list of your activities as well as schedule activities by heading over to the Activities tab or clicking <a href="/activities"> here</a></p1>
+    </div>
+  </div>
+
+  <div class="row g-5" style="padding-top: 20px">
+    <div class="col-md-6">
+      <h2>Missed completing some tasks? Don't Worry!</h2>
+      <p> The Online Diary also allows for you to go back and complete tasks that you have left blank on previous days for whatever reason. Forgot to pop in what time you went to bed? No problem! Just head over to the <a href="/diary"> Todays Diary</a> tab and select the date
+      for which you still want to complete the missed tasks for!</p>
+        <p1> Once you have completed these tasks you can head over to the logs page and they should appear in your logs!
+      </p1>
+    </div>
+
+    <div class="col-md-6">
+      <h2>Completed Logs</h2>
+      <p>The completed logs tab keeps track of all the tasks and activities you have completed in the past so you can always go back and review them. If you wish you can also export these logs into .csv format so you can input them into any of your analysis tools to notice any patterns! </p>
+      <p1>Please click<a href="/log"> here</a> to view your logs (if you have any!) or click <a href="addtask"> here<a> if you need to add some daily tasks to schedule so you can complete them and view your own personal logs!</p1>
+    </div>
+  </div>
+</main>
+{% else %}
+<main>
+  <h1>Hello, Welcome to my Final Project for CS50</h1>
+  <p>The Daily Tracker.</p>
+  <p1> If you havent already done so, please click the button below to register or head over to the login page </p1>
+
+  <div class="mb-5">
+    <a href="/register" class="btn btn-primary btn-lg px-4" style="margin-top: 20px">Register</a>
+  </div>
+
+  <hr class="col-3 col-md-2 mb-5">
+
+  <div class="row g-5">
+    <div class="col-md-6">
+      <h2> The daily tracker </h2>
+      <p> The daily tracker essentially allows you to keep a diary of yourself everyday where you just add a comment and mark each activity as completed, it is very simple and easy to use and allows you to track everything. It even allows you to 
+        export your logs out into csv format so you can easily analyse your data in excel or another application if you so wish to!
+      </p>
+    </div>
+</main>
+
+<hr class="featurette-divider">
+
+<div class="row featurette">
+  <div class="col-md-7">
+    <h2 class="featurette-heading"> Add Daily Tasks! <span class="text-muted">With a click of a button! </span></h2>
+    <p class="lead"> Once you are registered and logged in, you can start creating your own personalised daily diary. Simply head over to the daily task tab and start adding daily tasks away!
+      Remember to mark them as complete before each day so you can keep tabs on your progress and consistency! 
+    </p>
+  </div>
+  <div class="col-md-5">
+     <img id="homepage-placeholders" src="/static/img/1.png">
+  </div>
+</div>
+
+<hr class="featurette-divider">
+
+<div class="row featurette">
+  <div class="col-md-7 order-md-2">
+    <h2 class="featurette-heading">Start completing your daily diary! <span class="text-muted"> and review them! </span></h2>
+    <p class="lead"> As you go about your day, you're able to update your tasks as you go and the answers will be saved! You won't have to answer or complete all the tasks at the same time!</p>
+  </div>
+  <div class="col-md-5 order-md-1">
+     <img id="homepage-placeholders2" src="/static/img/4.png">
+  </div>
+</div>
+
+<hr class="featurette-divider">
+
+<div class="row featurette">
+  <div class="col-md-7">
+    <h2 class="featurette-heading">Ever forget important events? <span class="text-muted"> Not anymore! </span></h2>
+    <p class="lead"> You can also add one off events such as interviews, birthdays, dates, events or even just a day to sleep in to your activities! Once its scheduled it'll be on
+      your tracking list to refer to and will be reminded on the day it will occur!
+    </p>
+  </div>
+  <div class="col-md-5">
+     <img id="homepage-placeholders" src="/static/img/3.png">
+  </div>
+</div>
+
+<hr class="featurette-divider">
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log of all completed tasks
+{% endblock %}
+
+{% block main %}
+
+<div>
+    <p1 class="diary-header"> <h1>Log of Completed Tasks</h1></p1>
+
+    <a href="{{ url_for('.export') }}">Click here to export all your logs in csv format </a>
+    <p2 class="diary-header"> <h4> Please see the log of all the tasks you have ever completed!</h4></p2>
+  </div>
+
+    <table class="table table-striped">
+        <tr> 
+            <th scope="col">
+                Event
+            </th>
+            <th scope="col">
+                Comment
+            </th>
+            <th scope="col">
+                Complete
+            </th>
+        </tr>
+        {% for log in logs %}
+        <tr>
+            <td>
+                 {{ log.taskname }} </a>
+            </td>
+            <td>
+                {{ log.comment }}
+            </td>
+            <td>
+                {{ log.date }}
+            </td>
+            </form>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+{% endblock %}
